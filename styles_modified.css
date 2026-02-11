@@ -1,0 +1,123 @@
+/* MODIFIED EXTERNAL CSS FILE - styles_modified.css */
+/* This file contains MODIFIED styling with custom experiments */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style for the container that holds everything */
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+}
+
+h1 {
+    color: #1e3c72;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* EXPERIMENT A: Changed button color to purple/magenta */
+.my-button {
+    background-color: #9b59b6; /* Changed from green to purple */
+    color: white;
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+/* Style for the button when it's hovered over */
+.my-button:hover {
+    background-color: #8e44ad; /* Darker purple */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(155, 89, 182, 0.5);
+}
+
+/* Style for when the button has the "active" class */
+.my-button.active {
+    background-color: #e74c3c; /* Red when active */
+    transform: scale(1.1) rotate(2deg); /* Added rotation */
+}
+
+/* Style for the message box */
+.message-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient background */
+    color: white; /* White text for contrast */
+    border-radius: 10px;
+    display: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for when the message box is visible */
+.message-box.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-box p {
+    margin: 10px 0;
+    color: white; /* Changed to white */
+    font-size: 16px;
+}
+
+#clickCount {
+    font-weight: bold;
+    color: #ffeb3b; /* Yellow color for count */
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.student-name {
+    margin-top: 30px;
+    font-style: italic;
+    color: #666;
+    font-size: 14px;
+}
+
+/* EXPERIMENT D: Custom addition - Add pulse animation to click count */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.pulse {
+    animation: pulse 0.5s ease;
+}

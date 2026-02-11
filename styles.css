@@ -1,0 +1,105 @@
+/* EXTERNAL CSS FILE - styles.css */
+/* This file contains all the styling (presentation) for Task 4 */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style for the container that holds everything */
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* Style for the button in its normal state */
+.my-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Style for the button when it's hovered over */
+.my-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+/* Style for when the button has the "active" class */
+.my-button.active {
+    background-color: #ff6b6b;
+    transform: scale(1.1);
+}
+
+/* Style for the message box */
+.message-box {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    display: none; /* Hidden by default */
+    transition: all 0.3s ease;
+}
+
+/* Style for when the message box is visible */
+.message-box.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-box p {
+    margin: 10px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+#clickCount {
+    font-weight: bold;
+    color: #4CAF50;
+    font-size: 20px;
+}
+
+.student-name {
+    margin-top: 30px;
+    font-style: italic;
+    color: #666;
+    font-size: 14px;
+}
