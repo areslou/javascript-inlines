@@ -1,42 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task 4: MODIFIED - HTML + CSS + JavaScript Example</title>
-
-    <!-- EXTERNAL CSS: Modified styles with experiments -->
+    <title>HTML + CSS + JavaScript Example</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles_modified.css" />
-</head>
-<body>
-    <!-- HTML STRUCTURE: The content of our page -->
+  </head>
+  <body>
+
+    <!-- CRT scanline overlay -->
+    <div class="scanlines" aria-hidden="true"></div>
+
     <div class="container">
-        <h1>🎨 Modified JavaScript Demo</h1>
-        <p style="color: #666; margin-bottom: 20px; font-size: 14px;">
-            Experiments: Purple button, custom messages, alert, pulse animation, and more!
-        </p>
 
-        <!-- This is our interactive button -->
-        <button id="myButton" class="my-button">Click Me!</button>
+      <div class="screen-header">
+        <span class="blink">▶</span>&nbsp;LBYCPG3 DEMO&nbsp;<span class="blink">◀</span>
+      </div>
 
-        <!-- This box will appear when the button is clicked -->
-        <div id="messageBox" class="message-box">
-            <p>You clicked the button!</p>
-            <p>Click count: <span id="clickCount">0</span></p>
-        </div>
-        
-        <p class="student-name">Student Name: Brendan Lou S. Millares</p>
-        
-        <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px; font-size: 12px; color: #555;">
-            <strong>Experiments Applied:</strong><br>
-            A) Button color changed to purple<br>
-            B) Dynamic custom messages<br>
-            C) Alert on first click<br>
-            D) Pulse animation + background changes at 10 clicks
-        </div>
+      <h1>JS<br><span class="accent">CONNECTION</span><br>DEMO</h1>
+
+      <p class="byline">// Brendan Lou S. Millares</p>
+
+      <!-- interactive button -->
+      <button id="myButton" class="my-button">[ CLICK ME! ]</button>
+
+      <!-- message box — hidden by default, toggled by JS -->
+      <div id="messageBox" class="message-box">
+        <p id="dynamicMsg">You clicked the button!</p>
+        <p class="count-line">CLICKS:&nbsp;<span id="clickCount">0</span></p>
+      </div>
+
+      <div class="pixel-deco" aria-hidden="true">
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+      </div>
+
     </div>
 
-    <!-- JAVASCRIPT: Modified behavior with experiments -->
+    <!-- JAVASCRIPT: The behavior/interactivity of our page -->
     <script src="app_modified.js"></script>
-</body>
+  </body>
 </html>

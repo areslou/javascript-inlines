@@ -1,7 +1,4 @@
-/* EXTERNAL CSS FILE - styles.css */
-/* This file contains all the styling (presentation) for Task 4 */
 
-/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +14,7 @@ body {
     align-items: center;
 }
 
-/* Style for the container that holds everything */
+
 .container {
     text-align: center;
     background-color: white;
@@ -33,7 +30,7 @@ h1 {
     font-size: 28px;
 }
 
-/* Style for the button in its normal state */
+
 .my-button {
     background-color: #4CAF50;
     color: white;
@@ -45,20 +42,19 @@ h1 {
     transition: all 0.3s ease;
 }
 
-/* Style for the button when it's hovered over */
 .my-button:hover {
     background-color: #45a049;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
 }
 
-/* Style for when the button has the "active" class */
+
 .my-button.active {
     background-color: #ff6b6b;
     transform: scale(1.1);
 }
 
-/* Style for the message box */
+
 .message-box {
     margin-top: 20px;
     padding: 20px;
@@ -68,7 +64,7 @@ h1 {
     transition: all 0.3s ease;
 }
 
-/* Style for when the message box is visible */
+
 .message-box.show {
     display: block;
     animation: slideIn 0.3s ease;

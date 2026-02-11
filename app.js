@@ -1,39 +1,75 @@
-// EXTERNAL JAVASCRIPT FILE - app.js
-// This file contains all the behavior (interactivity) for Task 4
-
-// Step 1: Find the elements we want to work with
-// We use getElementById to "grab" elements from the HTML
-const button = document.getElementById("myButton");
+const button     = document.getElementById("myButton");
 const messageBox = document.getElementById("messageBox");
 const clickCount = document.getElementById("clickCount");
+const dynamicMsg = document.getElementById("dynamicMsg");
+const container  = document.querySelector(".container");
 
-// Step 2: Create a variable to keep track of clicks
 let count = 0;
 
-// Step 3: Add an event listener to the button
-// This tells the browser: "When the button is clicked, run this function"
+const messages = [
+  "> Signal acquired. JS is CONNECTED.",
+  "> DOM manipulation confirmed!",
+  "> Event listener fired successfully.",
+  "> Hello LBYCPG3! Keep clicking...",
+  "> JavaScript bridge: ONLINE.",
+  "> You found a secret! (There isn't one.)",
+  "> clickCount++ — no bugs detected.",
+  "> addEventListener works flawlessly!",
+  "> You're basically a developer now.",
+  "> MAX COMBO! You cannot be stopped.",
+];
+
+const comboWrap = document.createElement("div");
+comboWrap.className = "combo-bar-wrap";
+const comboBar = document.createElement("div");
+comboBar.className = "combo-bar";
+comboWrap.appendChild(comboBar);
+
 button.addEventListener("click", function () {
-    // Increase the click counter by 1
-    count = count + 1;
 
-    // Update the number shown on the page
-    clickCount.textContent = count;
+  if (count === 0) {
+    alert("Button was clicked!\n\nWelcome to the Neon Arcade JS Demo, LBYCPG3!");
+  }
 
-    // Toggle the "active" class on the button
-    // This changes the button's color (see CSS above)
-    button.classList.toggle("active");
+  count = count + 1;
 
-    // Toggle the "show" class on the message box
-    // This makes the message box appear or disappear (see CSS above)
-    messageBox.classList.toggle("show");
+  clickCount.textContent = count;
 
-    // Change the button text based on whether message is showing
-    if (messageBox.classList.contains("show")) {
-        button.textContent = "Hide Message";
-    } else {
-        button.textContent = "Click Me!";
-    }
+  clickCount.style.transform = "scale(1.5)";
+  setTimeout(() => { clickCount.style.transform = "scale(1)"; }, 150);
+
+  button.classList.toggle("active");
+
+  if (button.classList.contains("active")) {
+    button.textContent = "[ HIDE MESSAGE ]";
+  } else {
+    button.textContent = "[ CLICK ME! ]";
+  }
+
+  if (!messageBox.querySelector(".combo-bar-wrap")) {
+    messageBox.appendChild(comboWrap);
+  }
+  messageBox.classList.toggle("show");
+
+  dynamicMsg.textContent = messages[(count - 1) % messages.length];
+
+  const pct = Math.min((count / 10) * 100, 100);
+  comboBar.style.width = pct + "%";
+
+  container.classList.remove("shake");
+  void container.offsetWidth;
+  container.classList.add("shake");
+
+  if (count % 5 === 0) {
+    clickCount.style.color = "#ff00aa";
+    clickCount.style.textShadow = "0 0 12px #ff00aa";
+    setTimeout(() => {
+      clickCount.style.color = "";
+      clickCount.style.textShadow = "";
+    }, 400);
+  }
+
 });
 
-// This message appears in the browser console (F12)
-console.log("JavaScript is connected and ready!");
+console.log("%c[ LBYCPG3 ] JavaScript is connected and ready!", "color:#c8ff00;font-family:monospace;font-weight:bold;");
+console.log("Experiments: A=button color, B=dynamic messages, C=first-click alert, D=glitch+combo+shake");

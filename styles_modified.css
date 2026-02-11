@@ -1,123 +1,251 @@
-/* MODIFIED EXTERNAL CSS FILE - styles_modified.css */
-/* This file contains MODIFIED styling with custom experiments */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
 
-/* Reset and base styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  --bg:        #0a0a0f;
+  --panel:     #0f0f1a;
+  --border:    #1a1a2e;
+
+  --btn-idle:  #c8ff00;
+  --btn-hover: #b0e600;
+  --btn-active:#ff00aa;
+
+  --lime:      #c8ff00;
+  --magenta:   #ff00aa;
+  --cyan:      #00ffe7;
+  --amber:     #ffb800;
+  --white:     #f0f0f0;
+  --dim:       #555577;
+
+  --font-display: 'Press Start 2P', monospace;
+  --font-body:    'Share Tech Mono', monospace;
+
+  --glow-lime:    0 0 8px #c8ff0088, 0 0 20px #c8ff0044;
+  --glow-magenta: 0 0 8px #ff00aa88, 0 0 20px #ff00aa44;
+  --glow-cyan:    0 0 8px #00ffe788, 0 0 20px #00ffe744;
 }
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(200,255,0,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(255,0,170,0.06) 0%, transparent 70%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: crosshair;
 }
 
-/* Style for the container that holds everything */
+.scanlines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.18) 2px,
+    rgba(0,0,0,0.18) 4px
+  );
+}
+
 .container {
-    text-align: center;
-    background-color: white;
-    padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
+  position: relative;
+  width: min(480px, 92vw);
+  background: var(--panel);
+  border: 2px solid var(--lime);
+  box-shadow:
+    0 0 0 1px var(--border),
+    var(--glow-lime),
+    inset 0 0 40px rgba(200,255,0,0.03);
+  padding: 40px 36px 32px;
+  text-align: center;
+  animation: bootUp 0.6s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+@keyframes bootUp {
+  from { opacity: 0; transform: scaleY(0.05) scaleX(0.8); }
+  60%  { opacity: 1; transform: scaleY(1.02) scaleX(1); }
+  to   { transform: scaleY(1) scaleX(1); }
+}
+
+.container.shake {
+  animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-6px) rotate(-0.4deg); }
+  40%     { transform: translateX(6px) rotate(0.4deg); }
+  60%     { transform: translateX(-4px); }
+  80%     { transform: translateX(4px); }
+}
+
+.screen-header {
+  font-family: var(--font-display);
+  font-size: 7px;
+  letter-spacing: 2px;
+  color: var(--dim);
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
 }
 
 h1 {
-    color: #1e3c72;
-    margin-bottom: 30px;
-    font-size: 28px;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 5vw, 26px);
+  line-height: 1.6;
+  letter-spacing: 2px;
+  color: var(--white);
+  margin-bottom: 6px;
+  text-shadow: var(--glow-lime);
 }
 
-/* EXPERIMENT A: Changed button color to purple/magenta */
+h1 .accent {
+  color: var(--lime);
+  display: block;
+}
+
+.byline {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 1px;
+  margin-bottom: 32px;
+  text-shadow: var(--glow-cyan);
+}
+
 .my-button {
-    background-color: #9b59b6; /* Changed from green to purple */
-    color: white;
-    padding: 15px 30px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--bg);
+  background-color: var(--btn-idle);
+  border: none;
+  padding: 16px 28px;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.15s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: var(--glow-lime), 4px 4px 0 rgba(0,0,0,0.6);
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  margin-bottom: 22px;
 }
 
-/* Style for the button when it's hovered over */
 .my-button:hover {
-    background-color: #8e44ad; /* Darker purple */
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(155, 89, 182, 0.5);
+  background-color: var(--btn-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-lime), 4px 6px 0 rgba(0,0,0,0.6);
 }
 
-/* Style for when the button has the "active" class */
+.my-button:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
 .my-button.active {
-    background-color: #e74c3c; /* Red when active */
-    transform: scale(1.1) rotate(2deg); /* Added rotation */
+  background-color: var(--btn-active);
+  color: var(--white);
+  box-shadow: var(--glow-magenta), 4px 4px 0 rgba(0,0,0,0.6);
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
 }
 
-/* Style for the message box */
 .message-box {
-    margin-top: 20px;
-    padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient background */
-    color: white; /* White text for contrast */
-    border-radius: 10px;
-    display: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: none;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid var(--magenta);
+  box-shadow: var(--glow-magenta), inset 0 0 20px rgba(255,0,170,0.04);
+  padding: 20px 18px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Style for when the message box is visible */
+.message-box::before,
+.message-box::after {
+  content: '■';
+  position: absolute;
+  font-size: 6px;
+  color: var(--magenta);
+  opacity: 0.7;
+}
+
+.message-box::before { top: 6px; left: 8px; }
+.message-box::after  { bottom: 6px; right: 8px; }
+
 .message-box.show {
-    display: block;
-    animation: slideIn 0.3s ease;
+  display: block;
+  animation: glitchReveal 0.3s steps(1) both;
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes glitchReveal {
+  0%  { clip-path: inset(100% 0 0 0); opacity: 0; }
+  25% { clip-path: inset(60% 0 0 0);  opacity: 1; transform: translateX(4px); }
+  50% { clip-path: inset(30% 0 0 0);  transform: translateX(-3px); }
+  75% { clip-path: inset(10% 0 0 0);  transform: translateX(2px); }
+  100%{ clip-path: inset(0% 0 0 0);   transform: translateX(0); }
 }
 
-.message-box p {
-    margin: 10px 0;
-    color: white; /* Changed to white */
-    font-size: 16px;
+#dynamicMsg {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--white);
+  line-height: 1.7;
+  margin-bottom: 14px;
+  min-height: 22px;
+}
+
+.count-line {
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--dim);
 }
 
 #clickCount {
-    font-weight: bold;
-    color: #ffeb3b; /* Yellow color for count */
-    font-size: 24px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: var(--amber);
+  font-size: 20px;
+  text-shadow: 0 0 10px var(--amber);
+  display: inline-block;
+  transition: transform 0.15s;
 }
 
-.student-name {
-    margin-top: 30px;
-    font-style: italic;
-    color: #666;
-    font-size: 14px;
+.combo-bar-wrap {
+  margin-top: 12px;
+  height: 3px;
+  background: rgba(255,255,255,0.07);
+  position: relative;
 }
 
-/* EXPERIMENT D: Custom addition - Add pulse animation to click count */
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
+.combo-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--lime), var(--cyan));
+  box-shadow: 0 0 8px var(--cyan);
+  transition: width 0.4s cubic-bezier(0.34,1.56,0.64,1);
 }
 
-.pulse {
-    animation: pulse 0.5s ease;
+.pixel-deco {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--border);
+  letter-spacing: 1px;
+  margin-top: 26px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
